@@ -23,7 +23,6 @@ import time
 import numpy as np
 from sklearn.metrics import roc_curve, roc_auc_score, auc
 from scipy import interp
-from sklearn.metrics import roc_curve,auc
 import os
 import matplotlib.pyplot as plt
 from pylab import *
@@ -49,9 +48,7 @@ def load_data():
     shu=data
     X,y=get_shuffle(shu,labels)
     features = torch.FloatTensor(X)
-    labels = y
-    labels = torch.LongTensor(labels)
-    labels = torch.squeeze(labels)
+    labels = torch.squeeze(y)
     g = dgl.knn_graph(features, 5, algorithm='bruteforce-blas', dist='cosine')
     g = dgl.remove_self_loop(g)
     g = dgl.add_self_loop(g)
@@ -106,9 +103,7 @@ for train_index,test_index in index:
         print("Epoch {:05d} | Loss {:.4f} | Time(s) {:.4f}".format(epoch, loss.item(), np.mean(dur)))
         
     a=logits[test_index]
-    aa=F.softmax(a, dim=1)
-    aaa=aa.detach().numpy()
-    probas = aaa     
+    probas = F.softmax(a, dim=1)   
     y_class= utils.categorical_probas_to_classes(probas)    
     y_test=utils.to_categorical(labels[test_index])#generate the test 
     ytest=np.vstack((ytest,y_test))
