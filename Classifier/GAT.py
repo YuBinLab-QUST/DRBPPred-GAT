@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Sep 13 20:14:46 2021
 
-@author: 菜菜
-"""
 
 from numpy.core.fromnumeric import shape
 import torch
