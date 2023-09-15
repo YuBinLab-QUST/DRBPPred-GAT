@@ -38,3 +38,4 @@ data_2,index=elasticNet(shu,label)
 shu=data_2
 data_csv = pd.DataFrame(data=shu)
 data_csv.to_csv('ALL_Elastic_net.csv')
+
