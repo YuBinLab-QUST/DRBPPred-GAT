@@ -60,3 +60,5 @@ class MaskingNoiseAutoencoder(object):
 
     def getBiases(self):
         return self.sess.run(self.weights['b1'])
+
+
